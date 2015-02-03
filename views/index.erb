@@ -1,0 +1,31 @@
+<html>
+<body>
+	<header>
+		<h1>Welcome to Hogwarts!</h1>
+	</header>
+	<ul>
+		<% students.each do |key, student| %>
+			<li><%=student[:name]%> is <%= student[:age] %> years old. The student 
+			has a favorite spell of <%= student[:favspell]%>, and the student has an id of 
+			<a href="/student/<%= student[:id]%>"><%= student[:id]%></a>.
+			<%if student[:house] == "none" %>
+				<form action="/student" method="post">
+				<input type="hidden" name="house">
+				<button>Sort <%=student[:name]%>!</button>
+				</form>
+			<%else%>
+				 The student's house is <%=student[:house]%>
+			<%end%>
+			</li>
+		<%end%>
+	</ul>
+
+	<h3>Add a student here:</h3>
+	<form action="/student" method="post">
+	<input type="text" name="name" placeholder="student name" required>
+	<input type="text" name="age" placeholder="student age" required>
+	<input type="text" name="favspell" placeholder="student's favorite spell" required>
+	<button>ADD THAT SHIT</button>
+	</form>
+</body>
+</html>
